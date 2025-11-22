@@ -34,21 +34,15 @@ app.get("/", (req, res) => {
             </button>
         </div>
 
-        <!-- Matomo Tracking Code -->
+        <!-- Google Analytics 4 -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RGKSTZ9WW"></script>
         <script>
-          var _paq = window._paq = window._paq || [];
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="https://k56t-analytics.matomo.cloud/";
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', '1']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.async=true; g.src='https://cdn.matomo.cloud/k56t-analytics.matomo.cloud/matomo.js';
-            s.parentNode.insertBefore(g,s);
-          })();
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5RGKSTZ9WW');
         </script>
-        <!-- End Matomo Code -->
+        <!-- End Google Analytics -->
 
         <script>
         function getLocation() {
