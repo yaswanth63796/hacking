@@ -34,25 +34,135 @@ app.get("/", (req, res) => {
     </button>
 </div>
 
-<!-- Krishnagiri Images -->
-<div style="text-align:center; margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-  <a href="https://unsplash.com/photos/a-fern-is-growing-on-the-side-of-a-rock-QEW1VFX6sJ4" target="_blank">
-    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Fern on rock in Krishnagiri" style="width:200px; border-radius:8px;"/>
-  </a>
-  <a href="https://unsplash.com/photos/a-teddy-bear-sitting-on-top-of-a-pile-of-rocks-gWc118tyFG0" target="_blank">
-    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Rocks in Krishnagiri" style="width:200px; border-radius:8px;"/>
-  </a>
-  <a href="https://unsplash.com/photos/a-man-riding-a-skateboard-down-a-set-of-stone-steps-zUJzN4hqzI8" target="_blank">
-    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Stone steps in Krishnagiri" style="width:200px; border-radius:8px;"/>
-  </a>
-  <a href="https://unsplash.com/photos/a-close-up-of-a-plant-LHWm4UOkgwE" target="_blank">
-    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Green plant Krishnagiri" style="width:200px; border-radius:8px;"/>
-  </a>
-  <a href="https://unsplash.com/photos/p-pohon-coklat-dan-hijau-e888Pv9hfug" target="_blank">
-    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Tree in Krishnagiri" style="width:200px; border-radius:8px;"/>
-  </a>
-</div>
+<style>
+  .gallery-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  
+  .gallery-title {
+    text-align: center;
+    color: #2c5530;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+  }
+  
+  .image-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .image-card {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s ease;
+  }
+  
+  .image-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+  }
+  
+  .image-card:hover img {
+    transform: scale(1.1);
+  }
+  
+  .image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+    padding: 15px 10px 10px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+  }
+  
+  .image-card:hover .image-overlay {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    .image-gallery {
+      gap: 15px;
+    }
+    
+    .image-card {
+      width: 160px;
+      height: 160px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .image-gallery {
+      gap: 10px;
+    }
+    
+    .image-card {
+      width: 140px;
+      height: 140px;
+    }
+  }
+</style>
 
+<div class="gallery-container">
+  <h2 class="gallery-title">Krishnagiri Nature Gallery</h2>
+  
+  <div class="image-gallery">
+    <div class="image-card">
+      <a href="https://unsplash.com/photos/a-fern-is-growing-on-the-side-of-a-rock-QEW1VFX6sJ4" target="_blank">
+        <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Fern on rock in Krishnagiri"/>
+        <div class="image-overlay">Fern on Rock</div>
+      </a>
+    </div>
+    
+    <div class="image-card">
+      <a href="https://unsplash.com/photos/a-teddy-bear-sitting-on-top-of-a-pile-of-rocks-gWc118tyFG0" target="_blank">
+        <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Rocks in Krishnagiri"/>
+        <div class="image-overlay">Rock Formations</div>
+      </a>
+    </div>
+    
+    <div class="image-card">
+      <a href="https://unsplash.com/photos/a-man-riding-a-skateboard-down-a-set-of-stone-steps-zUJzN4hqzI8" target="_blank">
+        <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Stone steps in Krishnagiri"/>
+        <div class="image-overlay">Ancient Steps</div>
+      </a>
+    </div>
+    
+    <div class="image-card">
+      <a href="https://unsplash.com/photos/a-close-up-of-a-plant-LHWm4UOkgwE" target="_blank">
+        <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Green plant Krishnagiri"/>
+        <div class="image-overlay">Lush Greenery</div>
+      </a>
+    </div>
+    
+    <div class="image-card">
+      <a href="https://unsplash.com/photos/p-pohon-coklat-dan-hijau-e888Pv9hfug" target="_blank">
+        <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Tree in Krishnagiri"/>
+        <div class="image-overlay">Majestic Trees</div>
+      </a>
+    </div>
+  </div>
+</div>
 
 
         <!-- Google Analytics 4 -->
