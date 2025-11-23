@@ -36,12 +36,23 @@ app.get("/", (req, res) => {
 
 <!-- Krishnagiri Images -->
 <div style="text-align:center; margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Krishnagiri_Fort.jpg" alt="Krishnagiri Fort" style="width:200px; border-radius:8px;"/>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Krishnagiri_dam.jpg" alt="Krishnagiri Dam" style="width:200px; border-radius:8px;"/>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Krishnagiri_Hills.jpg" alt="Krishnagiri Hills" style="width:200px; border-radius:8px;"/>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Krishnagiri_temple.jpg" alt="Krishnagiri Temple" style="width:200px; border-radius:8px;"/>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Krishnagiri_River.jpg" alt="Krishnagiri River" style="width:200px; border-radius:8px;"/>
+  <a href="https://unsplash.com/photos/a-fern-is-growing-on-the-side-of-a-rock-QEW1VFX6sJ4" target="_blank">
+    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Fern on rock in Krishnagiri" style="width:200px; border-radius:8px;"/>
+  </a>
+  <a href="https://unsplash.com/photos/a-teddy-bear-sitting-on-top-of-a-pile-of-rocks-gWc118tyFG0" target="_blank">
+    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Rocks in Krishnagiri" style="width:200px; border-radius:8px;"/>
+  </a>
+  <a href="https://unsplash.com/photos/a-man-riding-a-skateboard-down-a-set-of-stone-steps-zUJzN4hqzI8" target="_blank">
+    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Stone steps in Krishnagiri" style="width:200px; border-radius:8px;"/>
+  </a>
+  <a href="https://unsplash.com/photos/a-close-up-of-a-plant-LHWm4UOkgwE" target="_blank">
+    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Green plant Krishnagiri" style="width:200px; border-radius:8px;"/>
+  </a>
+  <a href="https://unsplash.com/photos/p-pohon-coklat-dan-hijau-e888Pv9hfug" target="_blank">
+    <img src="https://images.unsplash.com/photo-?<your-params>&w=400" alt="Tree in Krishnagiri" style="width:200px; border-radius:8px;"/>
+  </a>
 </div>
+
 
 
         <!-- Google Analytics 4 -->
