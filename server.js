@@ -26,13 +26,23 @@ function getClientIp(req) {
 // Home
 app.get("/", (req, res) => {
     res.send(`
-        <h2 style="text-align:center">Allow GPS to Track Location</h2>
-        <div style="text-align:center; margin-top:40px;">
-            <button onclick="getLocation()" 
-                style="padding:12px 20px; font-size:18px; background:#007bff; color:white; border:none; border-radius:8px;">
-                Track Me
-            </button>
-        </div>
+     <h2 style="text-align:center">Allow GPS to Track Location</h2>
+<div style="text-align:center; margin-top:40px;">
+    <button onclick="getLocation()" 
+        style="padding:12px 20px; font-size:18px; background:#007bff; color:white; border:none; border-radius:8px;">
+        Track Me
+    </button>
+</div>
+
+<!-- Krishnagiri Images -->
+<div style="text-align:center; margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Krishnagiri_Fort.jpg" alt="Krishnagiri Fort" style="width:200px; border-radius:8px;"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Krishnagiri_dam.jpg" alt="Krishnagiri Dam" style="width:200px; border-radius:8px;"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Krishnagiri_Hills.jpg" alt="Krishnagiri Hills" style="width:200px; border-radius:8px;"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Krishnagiri_temple.jpg" alt="Krishnagiri Temple" style="width:200px; border-radius:8px;"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Krishnagiri_River.jpg" alt="Krishnagiri River" style="width:200px; border-radius:8px;"/>
+</div>
+
 
         <!-- Google Analytics 4 -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RGKSTZ9WW"></script>
